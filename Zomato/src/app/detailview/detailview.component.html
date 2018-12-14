@@ -1,0 +1,117 @@
+<!--Navigation bar contain logo -->
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" style="color:#CB212E;font-weight:bold;font-size:25px" [routerLink]="['/restaurants']">Zomato</a>
+</nav>
+<br>
+<!--Container that contain restaurant info-->
+<div class="character container mt-3">
+    <div *ngIf="UserReviews!=0">
+        <!--restaurant image if present-->
+        <div *ngIf="RestaurantDetails.featured_image;else Icon">
+            <img class="mr-3" src={{RestaurantDetails.featured_image}} width="350px" height="200px">
+        </div>
+        <!--logo image if restaurant image is not there-->
+        <ng-template #Icon>
+            <img class="mr-3" src="../assets/logo.png" width="250px">
+        </ng-template>
+    </div>
+    <div class="media-body">
+        <br>
+        <!--restaurant Name-->
+        <div class="text-black text-left">
+            <h4 class="p-3"> {{RestaurantDetails.name | uppercase}}</h4>
+        </div>
+        <br>
+        <!--cost-->
+        <div class="row">
+            <div class="col-lg-8 col-md-6 col-sm-12">
+                <h3>Average Cost For Two :
+                    <strong> {{RestaurantDetails.currency}}{{RestaurantDetails.average_cost_for_two}}</strong>
+                </h3>
+            </div>
+            <br>
+            <br>
+            <!--Phone number-->
+            <div class="col-lg-4 col-md-8">
+                <h3>Phone Number :
+                    <strong>{{RestaurantDetails.phone_numbers}}</strong>
+
+                </h3>
+            </div>
+        </div>
+        <!--Address-->
+        <div class="row">
+            <div class="col-lg-8 col-md-6">
+                <h3>Address :
+                    <strong>{{RestaurantDetails.location.address}}</strong>
+                </h3>
+            </div>
+        </div>
+        <br>
+        <!--Events-->
+        <div class="row">
+            <div class="col-lg-8 col-md-6">
+                <h3>Events :
+                    <a style="color:#CB212E;" href={{RestaurantDetails.events_url}}>Check Out Events</a>
+                </h3>
+            </div>
+        </div>
+        <br>
+        <!--menu list-->
+        <div class="row">
+            <div class="col-lg-8 col-md-6 col-sm-12">
+                <h3> Menu :
+                    <a style="color:#CB212E;" href={{RestaurantDetails.menu_url}}>Menu Of {{RestaurantDetails.name}}</a>
+                </h3>
+            </div>
+        </div>
+        <br>
+        <!--Photo album-->
+        <div class="row">
+            <div class="col-lg-10 col-md-6">
+                <h3>Album :
+                    <a style="color:#CB212E;" href={{RestaurantDetails.photos_url}}>Album Of {{RestaurantDetails.name}}</a>
+                </h3>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-10 col-md-6">
+                <h3>Url Link :
+                    <a style="color:#CB212E;" href={{RestaurantDetails.url}}>Visit Page Of {{RestaurantDetails.name}}</a>
+                </h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--Rating details-->
+<div class="card">
+    <div class="card-header" style="background-color:#CB212E">
+        Rating
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">User Rating :</h5>
+        <p class="card-text" style="font-size: 25px">{{ RestaurantDetails.user_rating.aggregate_rating }}</p>
+        <p>{{ RestaurantDetails.user_rating.rating_text }}</p>
+        <h5 style="color: blue">Based on:{{ RestaurantDetails.user_rating.votes }}&nbsp;Votes</h5>
+    </div>
+</div>
+<!--Reviews-->
+<div class="col-md-12 text-center bg-light" style="margin-top:3%">
+    <hr>
+    <h3>Reviews</h3>
+    <hr>
+</div>
+<div *ngFor="let review of UserReviews">
+    <div class="col-md-12">
+        <h6 class="float-right " style="color:#D5212E">{{review.review.review_time_friendly}}</h6>
+        <br>
+        <h5>Customer Comment :{{review.review.review_text}}</h5>
+        <div class="row">
+            <h6 class="col-md-6">Rating Text : {{review.review.rating_text}}</h6>
+            <h6 class="col-md-6">Rating :{{review.review.rating}}</h6>
+        </div>
+    </div>
+    <hr>
+</div>

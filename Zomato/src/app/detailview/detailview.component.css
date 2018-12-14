@@ -1,0 +1,14 @@
+.mt-3, .my-3, .mb-3 {
+  margin-top: 4rem!important;
+  margin-bottom: 4rem!important;
+}
+.character {
+    font-family: 'serif';
+    background-color: #eef2f3;
+  }
+.p-3{
+      color:red;
+      margin-right: 25px;
+      text-shadow:2px 2px 8px #111;
+  }
+ 

@@ -1,0 +1,54 @@
+.navbar .membership{
+	text-align: center;
+	font-size: 20px;
+	color: #BA8B02;
+	margin-left: 150px;
+	font-weight: 900;
+	text-decoration: none;
+	text-shadow:2px 2px 8px #111;
+	font-family: serif;
+}
+.bb{
+    border-bottom:2px solid #BA8B02;
+}
+.join{
+	color:green;
+    text-decoration:underline; 
+    margin-right: 600px;
+    font-size: 15px;
+}
+.fa{
+	color: red;
+	margin-left: 100px;
+	font-size: 20px;
+}
+.fa span{
+	color:black;
+	text-decoration: none;
+	margin-left: 5px;
+	font-size: 20px;
+}
+.jumbotron{
+	background-image: url("/assets/dish.jpg"); 
+   opacity: .9;
+ 
+   width: 100%;
+   z-index: -1;
+   border: 1px solid black;
+   background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 400px;
+}
+.jumbotron .display-4{
+	color: #fff;
+	margin-top: 250px;
+	font-weight: bold;
+	font-size: 25px;
+	text-align: center;
+
+
+}
+.card-body:hover{
+	box-shadow:-1px 20px 60px -12px rgb(241, 3, 15);
+}
+

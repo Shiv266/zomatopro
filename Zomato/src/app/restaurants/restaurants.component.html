@@ -1,0 +1,57 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!--1st Navigation bar-->
+<nav class="navbar bb navbar-light bg-dark">
+  <h4 class="membership">Introducing Zomato Gold -- An Exclusive Members Club. </h4>
+  <a href="https://www.zomato.com/gold" class="join">Join Now</a>
+</nav>
+<!--2nd Navigation Bar contain logo and search box and button-->
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" style="color:#CB212E;font-weight:bold;font-size:25px">Zomato</a>
+  <!-- Conatiner if you want to search restaurants-->
+  <ng-container *ngIf="RestaurantSearch">
+    <form class="form-inline" (ngSubmit)="searchRes()">
+      <input class="form-control  mr-sm-1" type="text" name="RestaurantName" [(ngModel)]="RestaurantName" placeholder="Restraunt Name">
+      <button type="submit" value="Submit" class="btn btn-outline-danger mr-sm-1">Find Restaurant</button>
+    </form>
+    <button type="submit" value="Submit" (click)="toggle()" class="btn btn-outline-light bg-danger mr-sm-1">{{autoLocation}}</button>
+  </ng-container>
+  <!--Container if you want to search by Location-->
+  <ng-container *ngIf="LocationSearch">
+    <form class="form-inline my-2 my-lg-0" (ngSubmit)="changeLoc()">
+      <input class="form-control  mr-sm-1" type="text" name="location" [(ngModel)]="location" placeholder={{autoLocation}} required>
+      <button type="submit" value="Submit" class="btn btn-outline-danger mr-sm-1">Change Location</button>
+    </form>
+    <button type="submit" value="Submit" (click)="setCurrenLocation()" class="btn btn-outline-danger  mr-sm-1">current Location</button>
+    <button type="submit" value="Submit" (click)="toggle()" class="btn btn-outline-danger  mr-sm-1">Cancel</button>
+  </ng-container>
+</nav>
+<!--Jumbotron which contain front image-->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h4 class="display-4">Find the best restaurants, cafés, and bars</h4>
+  </div>
+</div>
+<!--card that show restaurants if restaurant is not equal to 0-->
+<div class="card-group" *ngIf="restaurants!=0;else noRestaurants">
+  <div *ngFor="let restaurant of restaurants" class="col-md-3" style="margin-top:3%">
+    <!--showing the restaurants pic-->
+    <img *ngIf="restaurant.restaurant.featured_image" class="card-img-top" height="150px" width="150px" src={{restaurant.restaurant.featured_image}}>
+    <!--If restaurant image is not there then show this logo-->
+    <img *ngIf="!restaurant.restaurant.featured_image" class="card-img-top" height="150px" width="150px" src="../assets/logo.png">
+    <!--card body that contain restaurant Name and Address-->
+    <div class="card-body">
+      <h6 class="  float-center ">{{restaurant.restaurant.name}} </h6>
+      <h6 class="  float-center ">Address : {{restaurant.restaurant.location.address}} </h6>
+      <!--Button that will lead us to detail page-->
+      <a [routerLink]="['/detailview',restaurant.restaurant.R.res_id]" class="btn btn-outline-danger float-center">See More... </a>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<!--if there is no restaurant then this template come into use-->
+<ng-template #noRestaurants>
+  <div class="col-md-12 text-center" style="margin-top: 20%">
+    <h2 style="color: #CB212E">No Restaurant Found</h2>
+  </div>
+</ng-template>
